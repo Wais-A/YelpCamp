@@ -1,4 +1,5 @@
 {
-    "editor.formatOnSave": true,
-    "editor.quickSuggestionsDelay": 1
+	"editor.formatOnSave": true,
+	"editor.quickSuggestionsDelay": 1,
+	"terminal.integrated.macOptionClickForcesSelection": true
 }
