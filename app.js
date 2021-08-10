@@ -55,25 +55,29 @@ app.use(passport.initialize())
 app.use(passport.session())
 passport.use(new LocalStrategy(User.authenticate()))
 
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
 app.use((req, res, next) => {
 	res.locals.success = req.flash('success');
 	res.locals.error = req.flash('error');
 	next();
 })
 
+
 app.use('/campgrounds', campgrounds)
 app.use('/campgrounds/:id/reviews', reviews)
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
 	res.render('home')
 });
 
 
-app.all('*', (req, res, next) => {
+app.all('*', (_req, _res, next) => {
 	next(new ExpressError('Page Not Found', 404))
 })
 
-app.use((err, req, res, next) => {
+app.use((err, _req, res, _next) => {
 	const {
 		statusCode = 500
 	} = err;
