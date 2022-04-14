@@ -38,7 +38,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
 
 const sessionConfig = {
-	secret: 'thisshouldbeabettersecret!',
+	secret: 'thisShouldBeABetterSecret!',
 	resave: false,
 	saveUninitialized: true,
 	cookie: {

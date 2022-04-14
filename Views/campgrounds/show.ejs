@@ -7,11 +7,17 @@
 				<h5 class="card-title"><%= campground.title %></h5>
 				<p class="card-text"><%= campground.description%></p>
 			</div>
+			<% function capitalize(str){ %>
+				<% const lower = str.toLowerCase() %> 
+				<% return str.charAt(0).toUpperCase() + lower.slice(1)%> 
+				
+			<% } %> 
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item text-muted"><%= campground.location %></li>
-				<li class="list-group-item">Submitted by <%= campground.author.username %></li>
+				<li class="list-group-item">Submitted by <%= capitalize(campground.author.username)%></li>
 				<li class="list-group-item">$<%= campground.price %>/night</li>
 			</ul>
+			<% if(currentUser && campground.author.equals(currentUser._id)) {%> 
 			<div class="card-body">
 				<a
 					href="/campgrounds/<%=campground._id%>/edit"
@@ -26,6 +32,7 @@
 					<button class="card-link btn btn-danger">Delete</button>
 				</form>
 			</div>
+			<% } %> 
 			<footer class="card-footer">
 				<a href="/campgrounds">All Campgrounds</a>
 			</footer>
@@ -62,7 +69,7 @@
 				></textarea>
 				<div class="valid-feedback">Looks good!</div>
 			</div>
-			<button class="btn btn-success">Submit</button>
+			<button type="button" class="btn btn-success">Submit</button>
 		</form>
 		<% for(let review of campground.reviews){ %>
 		<div class="mb-3 card">
