@@ -38,7 +38,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
 
 const sessionConfig = {
-	secret: 'thisShouldBeABetterSecret!',
+	secret: 'thisshouldbeabettersecret!',
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
@@ -79,13 +79,9 @@ app.all('*', (_req, _res, next) => {
 })
 
 app.use((err, _req, res, _next) => {
-	const {
-		statusCode = 500
-	} = err;
+	const { statusCode = 500 } = err;
 	if (!err.message) err.message = 'Oh No, Something Went Wrong!'
-	res.status(statusCode).render('error', {
-		err
-	})
+	res.status(statusCode).render('error', { err })
 })
 
 app.listen(3000, () => {
